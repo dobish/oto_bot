@@ -3,15 +3,19 @@ from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 from telegram.constants import ParseMode
 from bs4 import BeautifulSoup
 import requests
+import os
+from dotenv import load_dotenv
 import re
 import time
 
 # Global storage for previously seen listings
 seen_listings = set()
 
+# Load environment variables from the .env file
+load_dotenv()
 
 # Telegram Config
-BOT_TOKEN = '7511643653:AAGjAzbxn35M_CzLJLOnR77IdfbPRK8-n_4'
+BOT_TOKEN = os.getenv('BOT_TOKEN')
 CHAT_ID = 'your-chat-id'
 URL = 'https://www.otomoto.pl/osobowe/mazda/rx-8'
 HEADERS = {'User-Agent': 'Mozilla/5.0'}
