@@ -165,8 +165,8 @@ async def check_new_listings(context: ContextTypes.DEFAULT_TYPE) -> None:
 async def start_notifications(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat_id = update.message.chat_id
     context.job_queue.run_repeating(
-        check_new_listings, 60, first=0, chat_id=chat_id
-    )  # Check every 60 seconds
+        check_new_listings, 3600, first=0, chat_id=chat_id
+    )  # Check every hour
     await update.message.reply_text("Started checking for new listings!")
 
 
