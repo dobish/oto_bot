@@ -6,7 +6,6 @@ import requests
 import os
 from dotenv import load_dotenv
 import re
-import time
 
 # Global storage for previously seen listings
 seen_listings = set()
@@ -143,17 +142,18 @@ async def check_new_listings(context: ContextTypes.DEFAULT_TYPE) -> None:
         new_listings = []
 
         # Compare current listings with the stored ones
-        for title, url in data:
+        for title, url, price in data:
             if url not in seen_listings:
-                new_listings.append((title, url))
+                new_listings.append((title, url, price))
                 seen_listings.add(url)  # Add new URL to seen_listings
 
         # Notify the user about new listings
         if new_listings:
-            for title, url in new_listings:
+            for title, url, price in new_listings:
                 await context.bot.send_message(
                     chat_id=context.job.chat_id,
-                    text=f"New listing found:\n[{title}]({url})",
+                    text=f"New listing found:\n[{title}]({url})\n"
+                    f"{price}",
                     parse_mode=ParseMode.MARKDOWN,
                 )
     except Exception as e:
