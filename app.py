@@ -108,11 +108,11 @@ def fetch_data():
     soup = BeautifulSoup(response.text, 'html.parser')
 
     listings = []
-    for tag in soup.select('article.e15xeixv0'):
+    for tag in soup.select('article.ooa-1yux8sr'):
         # Get the title
         title = tag.find('h2').text.strip()
         # Get the listing url
-        link_tag = tag.select_one('div.ey6oyue6 a')
+        link_tag = tag.select_one('div.ooa-1qo9a0p a')
         link = link_tag['href']
         # Get the lisitng price
         price_tag = tag.select_one('h3')
